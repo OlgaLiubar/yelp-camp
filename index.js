@@ -69,6 +69,11 @@ app.put('/campgrounds/:id', async (req, res) => {
   res.redirect(`/campgrounds/${campground._id}`);
 })
 
+app.delete('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  const campground = await Campground.findByIdAndDelete(id)
+  res.redirect(`/campgrounds`);
+})
 
 async function main() {
   await mongoose.connect('mongodb://localhost:27017/yelp-camp', {
